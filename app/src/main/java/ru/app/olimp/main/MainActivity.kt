@@ -1,7 +1,8 @@
-package ru.app.olimp
+package ru.app.olimp.main
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import ru.app.olimp.R
 
 class MainActivity : AppCompatActivity() {
 
