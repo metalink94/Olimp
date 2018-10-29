@@ -15,8 +15,14 @@ import ru.app.olimp.adapters.pager.list.SignalsBuilder
 
 class SignalFragment: Fragment(), View.OnClickListener {
 
-    override fun onClick(p0: View?) {
+    override fun onClick(p0: View) {
+        if (p0.tag is SignalModel) {
+            showBottmSheet(p0.tag as SignalModel)
+        }
+    }
 
+    private fun showBottmSheet(signalModel: SignalModel) {
+        SignalBottomSheet.getInstance(signalModel).show(requireActivity().supportFragmentManager, "")
     }
 
     lateinit var adapter: SignalsAdapterImpl

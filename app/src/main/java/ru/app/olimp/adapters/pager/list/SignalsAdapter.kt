@@ -53,7 +53,7 @@ class SignalsBuilder: SignalsAdapterBuilderImpl {
     }
 
     private fun createDelegateAdapter(): DelegateAdapter {
-        builder.addDelegate(SignalModel::class.java, SignalDelegate())
+        builder.addDelegate(SignalModel::class.java, SignalDelegate(), OnItemClickAdapterAction(onClick))
         return builder.build()
     }
 

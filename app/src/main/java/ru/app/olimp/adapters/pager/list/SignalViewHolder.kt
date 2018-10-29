@@ -10,5 +10,6 @@ class SignalViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     fun bind(model: SignalModel) {
         itemView.icon.setImageResource(model.imageRes)
         itemView.title.text = model.title ?: "Some Text"
+        itemView.tag = model
     }
 }
