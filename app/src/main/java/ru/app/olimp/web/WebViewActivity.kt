@@ -2,11 +2,14 @@ package ru.app.olimp.web
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import kotlinx.android.synthetic.main.web.*
+import ru.app.olimp.OlimpApp
 import ru.app.olimp.R
+import ru.app.olimp.utils.Features
 
 class WebViewActivity: AppCompatActivity() {
 
@@ -22,14 +25,14 @@ class WebViewActivity: AppCompatActivity() {
         }
     }
 
-    /*private fun getUrl(): String {
-        return if (application is FourRabetApp) {
-            Log.d("FourRabetApp", getRemoteConfig().getString(Features.URL))
-            getRemoteConfig().getString(Features.URL)
+    private fun getUrl(): String {
+        return if (application is OlimpApp) {
+            Log.d("OlimpApp", (application as OlimpApp).remoteConfig.getString(Features.URL))
+            (application as OlimpApp).remoteConfig.getString(Features.URL)
         } else {
             getString(R.string.url)
         }
-    }*/
+    }
 
     private fun initWebView() {
         webView.webChromeClient = WebChromeClient()
@@ -55,7 +58,7 @@ class WebViewActivity: AppCompatActivity() {
         webView.isScrollbarFadingEnabled = false
         webView.settings.builtInZoomControls = true
         webView.settings.displayZoomControls = false
-//        currentUrl = getUrl()
+        currentUrl = getUrl()
         load()
     }
 
