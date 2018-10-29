@@ -40,12 +40,12 @@ class SignalFragment: Fragment(), View.OnClickListener {
 
     private fun addItems() {
         val list = mutableListOf<SignalModel>()
-        list.add(SignalModel("Blue Sea", "Greate blue sea", R.drawable.sea))
-        list.add(SignalModel("Ocean", "Greate blue sea", R.drawable.ocean))
-        list.add(SignalModel("Yellow Sea", "Greate blue sea", R.drawable.sea))
-        list.add(SignalModel("Red Ocean", "Greate blue sea", R.drawable.ocean))
-        list.add(SignalModel("Yellow Sea", "Greate blue sea", R.drawable.sea))
-        list.add(SignalModel(null, "Greate blue sea", R.drawable.ocean))
+        list.add(SignalModel("Blue Sea", "Greate blue sea", R.drawable.one))
+        list.add(SignalModel("Ocean", "Greate blue sea", R.drawable.two))
+        list.add(SignalModel("Yellow Sea", "Greate blue sea", R.drawable.three))
+        list.add(SignalModel("Red Ocean", "Greate blue sea", R.drawable.four))
+        list.add(SignalModel("Yellow Sea", "Greate blue sea", R.drawable.five))
+        list.add(SignalModel(null, "Greate blue sea", R.drawable.six))
         adapter.addItems(list)
     }
 
