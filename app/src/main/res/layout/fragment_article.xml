@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/light"
             android:textSize="14sp"
-            android:textColorLink="@color/colorPrimary"
+            android:textColorLink="@color/button_color"
             />
 
     </LinearLayout>

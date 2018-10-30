@@ -25,7 +25,7 @@ class ArticalFragment: Fragment() {
         text.text = Html.fromHtml("Every year there are more and more ways to earn money online. But, despite this diversity, the majority of people still cannot start earning income on the internet. Why? The fact is that almost all ways to make money on the internet require significant personal investments: spending on advertising, or buying goods, if with internet stores, etc.\n" +
                 "    <br>Nevertheless, there are ways to earn money online with minimum or no investments. Trading, for example, namely binary options trading. It is far simpler than trading on the classic financial markets, but you can earn income comparable with that generated on the currency and stock exchanges.<br>" +
                 "<br>" +
-                "        There is, however, one problem that many novices face – they have a fairly hard time choosing a broker. We decided to help all beginning traders and to talk about one of the most popular and fastest growing binary options brokers – <a href=\"https://olymptrade.com/?traffic=1&amp;ref=pr_bizcommunity\">Olymp Trade.</a><br>" +
+                "        There is, however, one problem that many novices face – they have a fairly hard time choosing a broker. We decided to help all beginning traders and to talk about one of the most popular and fastest growing binary options brokers – Olymp Trade.<br>" +
                 "<br>" +
                 "<b>Olymp Trade: up to 90% profit with minimum investments</b><br>" +
                 "<br>" +
@@ -52,11 +52,11 @@ class ArticalFragment: Fragment() {
                 "the fastest payout of compensation (in this segment);<br>" +
                 "effective affiliate motivation through contests with valuable prizes and gifts;<br>" +
                 "professional technical and informational support for affiliates.<br>" +
-                "At that same conference <a href=\"https://www.investing.com/brokers/olymptrade/press-releases/olymp-trade-has-won-four-awards-as-leading-binary-options-broker-200203834\">Olymp Trade</a> also won the category “Best Financial Broker,” and in 2016 was named the “Fastest-Growing Broker of the Year” at ShowFx World and the “Best Platform for Trading Binary Options” from IAIR Awards.<br>" +
+                "At that same conference Olymp Trade also won the category “Best Financial Broker,” and in 2016 was named the “Fastest-Growing Broker of the Year” at ShowFx World and the “Best Platform for Trading Binary Options” from IAIR Awards.<br>" +
                 "<br>" +
                 "<b>Does Olymp Trade have a support team?</b><br>" +
                 "<br>" +
-                "        Yes, and you can contact tech support specialists by the email (support-en@olymptrade.com), or via online chat at the broker’s site, or on the official <a href=\"https://www.facebook.com/olymptradecom/\">Olymp Trade Facebook page.</a><br>" +
+                "        Yes, and you can contact tech support specialists by the email (support-en@olymptrade.com), or via online chat at the broker’s site, or on the official Olymp Trade Facebook page.<br>" +
                 "<br>" +
                 "Olymp Trade is a reliable, solid binary options broker that guarantees prompt payouts. You can make money with Olymp Trade even without investments. That is why more and more traders from South Africa prefer Olymp Trade when they choose a binary options broker.")
         text.movementMethod = LinkMovementMethod.getInstance()

@@ -20,7 +20,7 @@ class OlimpApp: Application() {
     }
 
     private fun fetch() {
-        remoteConfig.fetch(60)
+        remoteConfig.fetch(120L)
                 .addOnSuccessListener {
                     Log.d("OlimpApp App", "onSuccessLoaded RemoteConfig")
                     Log.d("OlimpApp App", remoteConfig.getString("url"))
