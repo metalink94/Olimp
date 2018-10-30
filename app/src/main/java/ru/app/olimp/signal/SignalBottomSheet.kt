@@ -5,6 +5,7 @@ import android.support.design.widget.BottomSheetDialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_bottom_signal.*
 import ru.app.olimp.R
 
@@ -33,7 +34,8 @@ class SignalBottomSheet: BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val imageView = arguments?.getInt(IMAGE) ?: R.drawable.sea
-        image.setImageResource(imageView)
+        Glide.with(requireContext()).load(imageView).into(image)
+//        image.setImageResource(imageView)
         title.text = arguments?.getString(TITLE)
         description.text = arguments?.getString(DESCRIPTION)
     }

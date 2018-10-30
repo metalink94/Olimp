@@ -1,5 +1,6 @@
 package ru.app.olimp.adapters.pager.list
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import ru.app.olimp.signal.SignalModel
