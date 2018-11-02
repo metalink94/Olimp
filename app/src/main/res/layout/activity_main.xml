@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/main_color"
     android:orientation="vertical"
-    tools:context=".main.MainActivity"
+    tools:context="ru.lopav.app.getwerunfest.main.MainActivity"
     >
 
     <ImageView
@@ -46,7 +46,7 @@
 
     </LinearLayout>
 
-    <ru.app.olimp.utils.CustomViewPager
+    <ru.lopav.app.getwerunfest.utils.CustomViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
