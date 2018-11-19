@@ -9,14 +9,15 @@ import ru.lopav.app.getwerunfest.utils.Features
 class FreeTradingApp: Application() {
 
     lateinit var remoteConfig: FirebaseRemoteConfig
+    var listener: OnRemoteComplete? = null
 
     override fun onCreate() {
         FirebaseApp.initializeApp(this)
+        super.onCreate()
         remoteConfig = FirebaseRemoteConfig.getInstance()
         remoteConfig.setDefaults(getDefaults())
         remoteConfig.activateFetched()
         fetch()
-        super.onCreate()
     }
 
     private fun fetch() {
@@ -28,6 +29,7 @@ class FreeTradingApp: Application() {
                 }
                 .addOnCompleteListener {
                     Log.d("FreeTradingApp App", "onCompleteLoaded RemoteConfig")
+                    listener?.onComplete()
                 }
                 .addOnFailureListener {
                     Log.e("FreeTradingApp App", "onOnFailure RemoteConfig", it)
