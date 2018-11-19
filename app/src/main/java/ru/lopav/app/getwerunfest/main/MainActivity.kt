@@ -10,13 +10,10 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_main.*
-import ru.lopav.app.getwerunfest.FreeTradingApp
 import ru.lopav.app.getwerunfest.R
 import ru.lopav.app.getwerunfest.adapters.pager.MainViewAdapter
 import ru.lopav.app.getwerunfest.artical.ArticalFragment
 import ru.lopav.app.getwerunfest.signal.SignalFragment
-import ru.lopav.app.getwerunfest.splash.SplashActivity
-import ru.lopav.app.getwerunfest.utils.Features
 import ru.lopav.app.getwerunfest.web.WebViewActivity
 
 class MainActivity : AppCompatActivity() {
@@ -26,7 +23,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        checkRemoteConfig()
         checkDataBase()
     }
 
@@ -35,29 +31,34 @@ class MainActivity : AppCompatActivity() {
         database.reference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 if (p0.value != null) {
-                    val maps = p0.value as Map<String, Any>
+                    val web = p0.child("web").value as Boolean
+                    val url = p0.child("url").value as String?
+                    checkRemoteConfig(web, url)
+                    Log.d("DataBase", "get Web $url")
                 }
-                Log.d("DataBase", "get database " + p0.value)
+                Log.d("DataBase", "get database ${p0.value}")
             }
 
             override fun onCancelled(p0: DatabaseError) {
                 Log.d("DataBase", "get database Error " + p0.message)
+                checkRemoteConfig(false, null)
             }
         })
 
     }
 
-    private fun checkRemoteConfig() {
-        if ((application as FreeTradingApp).remoteConfig.getBoolean(Features.NEED_WEB)) {
-            showWeb()
+    private fun checkRemoteConfig(web: Boolean, url: String?) {
+        if (web) {
+            showWeb(url)
         } else {
             setAdapter()
             setListeners()
         }
     }
 
-    private fun showWeb() {
-        startActivity(Intent(this,  WebViewActivity::class.java))
+    private fun showWeb(url: String?) {
+        startActivity(Intent(this,  WebViewActivity::class.java)
+            .putExtra(WebViewActivity.KEY_URL, url))
         finish()
     }
 

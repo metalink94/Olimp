@@ -18,19 +18,11 @@ class WebViewActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.web)
+        currentUrl = intent.getStringExtra(KEY_URL)
         initWebView()
         swipeRefresh.setOnRefreshListener {
             swipeRefresh.isRefreshing = true
             load()
-        }
-    }
-
-    private fun getUrl(): String {
-        return if (application is FreeTradingApp) {
-            Log.d("FreeTradingApp", (application as FreeTradingApp).remoteConfig.getString(Features.URL))
-            (application as FreeTradingApp).remoteConfig.getString(Features.URL)
-        } else {
-            getString(R.string.url)
         }
     }
 
@@ -58,11 +50,14 @@ class WebViewActivity: AppCompatActivity() {
         webView.isScrollbarFadingEnabled = false
         webView.settings.builtInZoomControls = true
         webView.settings.displayZoomControls = false
-        currentUrl = getUrl()
         load()
     }
 
     private fun load() {
         webView.loadUrl(currentUrl)
+    }
+
+    companion object {
+        const val KEY_URL = "url"
     }
 }
