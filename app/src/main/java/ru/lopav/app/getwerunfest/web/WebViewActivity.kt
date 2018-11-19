@@ -1,15 +1,18 @@
 package ru.lopav.app.getwerunfest.web
 
+import android.annotation.TargetApi
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.webkit.WebChromeClient
+import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import kotlinx.android.synthetic.main.web.*
-import ru.lopav.app.getwerunfest.FreeTradingApp
 import ru.lopav.app.getwerunfest.R
-import ru.lopav.app.getwerunfest.utils.Features
 
 class WebViewActivity: AppCompatActivity() {
 
@@ -19,6 +22,8 @@ class WebViewActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.web)
         currentUrl = intent.getStringExtra(KEY_URL)
+//        currentUrl = "https://track.alltraffer.ru/click?pid=3098&offer_id=130&sub1=andr"
+        //https://track.alltraffer.ru/click?pid=3098&offer_id=206&sub1=android
         initWebView()
         swipeRefresh.setOnRefreshListener {
             swipeRefresh.isRefreshing = true
@@ -29,8 +34,27 @@ class WebViewActivity: AppCompatActivity() {
     private fun initWebView() {
         webView.webChromeClient = WebChromeClient()
         webView.webViewClient = object : WebViewClient() {
+
+            @TargetApi(Build.VERSION_CODES.N)
+            override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+                val uri = request?.url
+                return shouldOverrideUrlLoading(uri.toString())
+            }
+
+            @Deprecated("shouldOverrideUrlLoading")
             override fun shouldOverrideUrlLoading(view: WebView, url: String?): Boolean {
+                return shouldOverrideUrlLoading(url ?: "")
+            }
+
+            private fun shouldOverrideUrlLoading(url: String): Boolean {
+                if (url.startsWith("market")) {
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+                    finish()
+                    return true
+                }
                 currentUrl = url
+                Log.d("WebView", "get Url $currentUrl")
+//                load()
                 return false
             }
 

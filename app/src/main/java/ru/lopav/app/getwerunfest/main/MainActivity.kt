@@ -1,6 +1,7 @@
 package ru.lopav.app.getwerunfest.main
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
@@ -24,7 +25,20 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        checkRemoteConfig(intent.getBooleanExtra(SplashActivity.KEY_WEB, false), intent.getStringExtra(WebViewActivity.KEY_URL))
+        if (intent.getBooleanExtra(SplashActivity.KEY_BROWSER, false)) {
+            openBrowser(intent.getStringExtra(WebViewActivity.KEY_URL))
+        } else {
+            checkRemoteConfig(
+                intent.getBooleanExtra(SplashActivity.KEY_WEB, false),
+                intent.getStringExtra(WebViewActivity.KEY_URL)
+            )
+        }
+    }
+
+    private fun openBrowser(stringExtra: String?) {
+        if (stringExtra.isNullOrEmpty()) return
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(stringExtra)))
+        finish()
     }
 
     private fun checkRemoteConfig(web: Boolean, url: String?) {

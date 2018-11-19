@@ -8,6 +8,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import ru.lopav.app.getwerunfest.FreeTradingApp
+import ru.lopav.app.getwerunfest.OnRemoteComplete
 import ru.lopav.app.getwerunfest.R
 import ru.lopav.app.getwerunfest.main.MainActivity
 import ru.lopav.app.getwerunfest.web.WebViewActivity.Companion.KEY_URL
@@ -28,30 +30,31 @@ class SplashActivity : AppCompatActivity() {
                 if (p0.value != null) {
                     val web = p0.child("web").value as Boolean
                     val url = p0.child("site").value as String?
-                    openMainActivity(web, url)
-                    Log.d("DataBase", "get Web $url")
+                    val browser = p0.child("browser").value as Boolean
+                    openMainActivity(web, url, browser)
                 }
                 Log.d("DataBase", "get database ${p0.value}")
             }
 
             override fun onCancelled(p0: DatabaseError) {
-                Log.d("DataBase", "get database Error " + p0.message)
                 openMainActivity()
             }
         })
     }
 
-    private fun openMainActivity(isWeb: Boolean = false, url: String? = null) {
+    private fun openMainActivity(isWeb: Boolean = false, url: String? = null, browser: Boolean = false) {
         startActivity(
             Intent(this, MainActivity::class.java)
                 .putExtra(KEY_WEB, isWeb)
                 .putExtra(KEY_URL, url)
+                .putExtra(KEY_BROWSER, browser)
         )
         finish()
     }
 
     companion object {
         const val KEY_WEB = "web"
+        const val KEY_BROWSER = "browser"
     }
 
 }
