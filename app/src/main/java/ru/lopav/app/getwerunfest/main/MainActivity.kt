@@ -14,6 +14,7 @@ import ru.lopav.app.getwerunfest.R
 import ru.lopav.app.getwerunfest.adapters.pager.MainViewAdapter
 import ru.lopav.app.getwerunfest.artical.ArticalFragment
 import ru.lopav.app.getwerunfest.signal.SignalFragment
+import ru.lopav.app.getwerunfest.splash.SplashActivity
 import ru.lopav.app.getwerunfest.web.WebViewActivity
 
 class MainActivity : AppCompatActivity() {
@@ -23,28 +24,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        checkDataBase()
-    }
-
-    private fun checkDataBase() {
-        val database = FirebaseDatabase.getInstance()
-        database.reference.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(p0: DataSnapshot) {
-                if (p0.value != null) {
-                    val web = p0.child("web").value as Boolean
-                    val url = p0.child("url").value as String?
-                    checkRemoteConfig(web, url)
-                    Log.d("DataBase", "get Web $url")
-                }
-                Log.d("DataBase", "get database ${p0.value}")
-            }
-
-            override fun onCancelled(p0: DatabaseError) {
-                Log.d("DataBase", "get database Error " + p0.message)
-                checkRemoteConfig(false, null)
-            }
-        })
-
+        checkRemoteConfig(intent.getBooleanExtra(SplashActivity.KEY_WEB, false), intent.getStringExtra(WebViewActivity.KEY_URL))
     }
 
     private fun checkRemoteConfig(web: Boolean, url: String?) {
